@@ -1,0 +1,48 @@
+@import "src/app/styles/fonts";
+
+.title {
+  display: flex;
+  margin-bottom: 1vw;
+  margin-left: 1vw;
+}
+
+.coinRank {
+  @include title(500);
+
+  @media (max-width: 768px) {
+    margin-left: 4vw;
+  }
+}
+
+.coinImage {
+  width: 2.1vw;
+  height: 2.1vw;
+  margin: 0 0.6vw 0 1vw;
+
+  @media (max-width: 1440px) {
+    width: 2.5vw;
+    height: 2.5vw;
+  }
+  @media (max-width: 1280px) {
+    width: 2.8vw;
+    height: 2.8vw;
+  }
+  @media (max-width: 1024px) {
+    width: 3.2vw;
+    height: 3.2vw;
+  }
+  @media (max-width: 768px) {
+    width: 4.7vw;
+    height: 4.7vw;
+  }
+}
+
+.coinName {
+  @include title(600);
+}
+
+.coinSymbol {
+  @include text(700);
+  color: rgba(59, 39, 21, 0.8);
+  margin-left: 0.5vw;
+}
