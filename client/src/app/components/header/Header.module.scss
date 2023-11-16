@@ -1,0 +1,68 @@
+@import "client/src/app/styles/fonts";
+
+.body {
+  border-bottom: 0.1vw rgba(59, 39, 21, 0.2) solid;
+  padding: 1vw 0 1vw 0;
+  display: flex;
+  margin: 0 11vw 0 4vw;
+
+  @media (max-width: 1440px) {
+    margin: 0 4vw 0 1vw;
+  }
+  @media (max-width: 1280px) {
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.popular {
+  display: flex;
+}
+
+.portfolio {
+  margin: 0 0 0 auto;
+  display: flex;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    margin: 0 4vw 3vw auto;
+  }
+}
+
+.image {
+  width: 3vw;
+  height: 3vw;
+
+  @media (max-width: 1440px) {
+    width: 3.8vw;
+    height: 3.8vw;
+  }
+  @media (max-width: 1280px) {
+    width: 4.7vw;
+    height: 4.7vw;
+  }
+  @media (max-width: 1024px) {
+    width: 5vw;
+    height: 5vw;
+  }
+  @media (max-width: 768px) {
+    width: 9vw;
+    height: 9vw;
+  }
+}
+
+.portfolioPrice {
+  text-align: right;
+  margin-right: 0.5vw;
+}
+
+.price {
+  @include text(700);
+  margin-top: 0.4vw;
+}
+
+.difference {
+  @include textSmall(700);
+}
