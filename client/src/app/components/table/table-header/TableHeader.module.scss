@@ -1,0 +1,14 @@
+@import "client/src/app/styles/fonts";
+
+.tableHeader {
+  @include text(700);
+  text-align: center;
+  color: wheat;
+  background-color: rgba(59, 39, 21, 0.7);
+
+  tr th:last-child {
+    @media (max-width: 768px) {
+      visibility: hidden;
+    }
+  }
+}
