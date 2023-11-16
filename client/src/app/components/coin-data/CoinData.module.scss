@@ -1,0 +1,16 @@
+@import "client/src/app/styles/fonts";
+
+.title {
+  display: flex;
+  margin-bottom: 0.2vw;
+  margin-top: 1vw;
+}
+
+.primaryInfo {
+  @include text(700);
+}
+
+.secondaryInfo {
+  @include text(600);
+  margin: 0 0 0 auto;
+}
