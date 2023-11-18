@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/appRouter.js"
   },
   "devDependencies": {
     "@types/node": "^20.9.1",
