@@ -1,9 +1,9 @@
 import {inferAsyncReturnType, initTRPC, TRPCError} from '@trpc/server';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import express from 'express';
-import {ICoinResponse, ICoinsResponse, IHistoryResponse} from "../types/responses";
-import * as schemas from '../schemas/schemas'
-import {Coin} from "../types/coin";
+import {ICoinResponse, ICoinsResponse, IHistoryResponse} from "./types/responses";
+import * as schemas from './schemas/schemas'
+import {Coin} from "./types/coin";
 
 const createContext = ({req, res,}: trpcExpress.CreateExpressContextOptions) => {
     return {req, res};
@@ -133,7 +133,7 @@ const postRouter = router({
 });
 
 const appRouter = trpc.router({
-    post: postRouter,
+    coins: postRouter,
 });
 
 async function main() {
@@ -146,7 +146,7 @@ async function main() {
     });
 
     app.use(
-        '/trpc',
+        '/coincap',
         trpcExpress.createExpressMiddleware({
             router: appRouter,
             createContext,
@@ -158,3 +158,5 @@ async function main() {
 }
 
 void main();
+
+export type AppRouter = typeof appRouter
