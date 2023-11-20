@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run dev --workspace=client & npm run dev --workspace=server"
+    "start": "concurrently \"npm run --prefix packages/client start\" \"npm run --prefix packages/server start\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "workspaces": [
-    "./packages/client",
-    "./packages/server"
-  ]
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
