@@ -1,0 +1,47 @@
+@import "client/src/styles/fonts";
+
+.body {
+  margin: 0 0 0 auto;
+  display: flex;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    margin: 0 4vw 3vw auto;
+  }
+}
+
+.image {
+  width: 3vw;
+  height: 3vw;
+
+  @media (max-width: 1440px) {
+    width: 3.8vw;
+    height: 3.8vw;
+  }
+  @media (max-width: 1280px) {
+    width: 4.7vw;
+    height: 4.7vw;
+  }
+  @media (max-width: 1024px) {
+    width: 5vw;
+    height: 5vw;
+  }
+  @media (max-width: 768px) {
+    width: 9vw;
+    height: 9vw;
+  }
+}
+
+.portfolioSum {
+  text-align: right;
+  margin-right: 0.5vw;
+}
+
+.summa {
+  @include text(700);
+  margin-top: 0.4vw;
+}
+
+.difference {
+  @include textSmall(700);
+}

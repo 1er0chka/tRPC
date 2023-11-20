@@ -1,0 +1,59 @@
+@import "client/src/styles/fonts";
+
+
+.body {
+  border-bottom: 0.1vw solid rgba(59, 39, 21, 0.4);
+  margin-top: 0.5vw;
+  display: flex;
+  margin-bottom: 1vw;
+}
+
+.coin {
+  margin-right: 2vw;
+  margin-bottom: 0.5vw;
+}
+
+.coinInfo {
+  display: flex;
+  align-items: center;
+}
+.coinLogo {
+  margin-right: 0.3vw;
+  width: 1.3vw;
+  height: 1.3vw;
+
+  @media (max-width: 1440px) {
+    width: 1.5vw;
+    height: 1.5vw;
+  }
+  @media (max-width: 1280px) {
+    width: 1.8vw;
+    height: 1.8vw;
+  }
+  @media (max-width: 1024px) {
+    width: 2.2vw;
+    height: 2.2vw;
+  }
+  @media (max-width: 768px) {
+    width: 3.7vw;
+    height: 3.7vw;
+  }
+}
+
+.name {
+  @include text(500);
+}
+
+.price {
+  @include text(500);
+  display: flex;
+  margin-top: 0.2vw;
+}
+
+.difference {
+  margin-left: 1vw;
+}
+
+.deleteButton {
+  margin: 0 0 0 auto;
+}
