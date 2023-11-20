@@ -1,13 +1,14 @@
 import * as schemas from "../schemas/schemas";
 import {ICoinResponse, ICoinsResponse} from "../types/responses";
-import {Coin} from "../types/coin";
 import {TRPCError} from "@trpc/server";
 import {trpc} from "../context/expressContext";
+import {Coin} from "../../../../types/coin";
 
 export const coinsRouter = trpc.router({
     getAll: trpc.procedure
         .input(schemas.offset)
         .mutation(async ({input}) => {
+            console.log(input)
             try {
                 const response: Response = await fetch(
                     "https://api.coincap.io/v2/assets?limit=40&offset=" + input.offset,
@@ -77,7 +78,7 @@ export const coinsRouter = trpc.router({
             }
         }),
 
-    getSerchResult: trpc.procedure
+    getSearchResult: trpc.procedure
         .input(schemas.coinId)
         .mutation(async ({input}) => {
             try {

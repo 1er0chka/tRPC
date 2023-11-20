@@ -1,4 +1,5 @@
-import {Coin, History} from "./coin";
+import {Coin, History} from "../../../../types/coin";
+
 
 export interface ICoinsResponse {
     data: Coin[];

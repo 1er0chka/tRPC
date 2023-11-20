@@ -1,5 +1,6 @@
 import * as trpcExpress from '@trpc/server/adapters/express';
 import express from 'express';
+import cors from "cors";
 import {coinsRouter} from "./routers/coinsRouter";
 import {historyRouter} from "./routers/historyRouter";
 import {createContext, trpc} from "./context/expressContext";
@@ -12,6 +13,9 @@ const appRouter = trpc.router({
 async function main() {
     const app = express();
 
+    app.use(cors({
+        origin: 'http://localhost:3000',
+    }));
     app.use((req, _res, next) => {
         console.log('⬅️ ', req.method, req.path, req.body ?? req.query);
         next();
@@ -20,6 +24,9 @@ async function main() {
     app.use(
         '/coincap',
         trpcExpress.createExpressMiddleware({
+            batching: {
+                enabled: false
+            },
             router: appRouter,
             createContext,
         }),
