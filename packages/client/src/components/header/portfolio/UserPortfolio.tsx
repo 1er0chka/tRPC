@@ -32,7 +32,7 @@ const UserPortfolio: FunctionComponent<IPortfolioProps> = ({onClickAction}) => {
     useEffect(() => {
         setPortfolioDif(0);
         const getAssets = async (coin: Portfolio) => {
-            // TODO: написать
+            // TODO: портфолио
             /*
             Service.getAssetsById(coin.id)
                 .then((data) => {

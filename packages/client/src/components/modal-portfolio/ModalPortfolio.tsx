@@ -12,7 +12,7 @@ interface IModalPortfolioProps {
 
 const ModalPortfolio: FunctionComponent<IModalPortfolioProps> = ({isVisible, setVisible, portfolioCoins}) => {
 
-    // TODO логику добавить
+    // TODO портфолио
 
     return isVisible ?
         <div className={styles.root}>

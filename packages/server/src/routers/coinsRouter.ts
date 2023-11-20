@@ -68,7 +68,7 @@ export const coinsRouter = trpc.router({
                         return coin.marketCapUsd && parseFloat(coin.priceUsd) >= 0.01
                     }).length
                 }
-                return {coinsNumber: coinsNumbers}
+                return coinsNumbers
             } catch (e) {
                 console.error('INTERNAL_SERVER_ERROR. Error fetching data: ', e)
                 throw new TRPCError({

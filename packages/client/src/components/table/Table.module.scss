@@ -1,0 +1,9 @@
+.body {
+  @media (max-width: 768px) {
+    user-select: none;
+  }
+}
+
+.table {
+  width: 100%;
+}
