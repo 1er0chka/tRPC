@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import styles from "./Pagination.module.scss";
 import PrimaryButton from "../../primary-button/PrimaryButton";
 
@@ -27,7 +27,7 @@ const Pagination: FunctionComponent<IPaginationProps> = ({
 
     return (
         <div className={styles.pagination}>
-            <PrimaryButton onClick={decreaseOffset} disabled={offset - 40 < 0} text={"<"} />
+            <PrimaryButton onClick={decreaseOffset} disabled={offset - 40 < 0} text={"<"}/>
             <div>
                 {offset} - {offset + 40 > itemsNumber ? itemsNumber : offset + 40}
             </div>

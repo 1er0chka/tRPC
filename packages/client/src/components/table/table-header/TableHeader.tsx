@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, {FunctionComponent, useState} from "react";
 import styles from "./TableHeader.module.scss";
 import {Coin} from "../../../../../../types/coin";
 import {Sort} from "../../../types/coin";
@@ -15,30 +15,37 @@ const TableHeader: FunctionComponent<ITableHeaderProps> = ({
     const [sortType, setSortType] = useState<Sort>("rank");
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
-    // TODO sort check
-
     const changeSort = (newSortType: Sort) => {
-        if (newSortType == sortType) {
+        let sortedObjects;
+
+        if (newSortType === sortType) {
+            sortedObjects = [...objects].reverse();
             setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-            setObjects(objects.reverse());
         } else {
-            setSortType(newSortType);
-            setSortOrder("asc");
-            setObjects(
-                objects.sort((a, b) => {
+            if (['rank', 'priceUsd', 'changePercent24Hr', 'marketCapUsd'].includes(newSortType)) {
+                sortedObjects = [...objects].sort((a, b) => {
                     const first = parseFloat(a[newSortType]);
                     const second = parseFloat(b[newSortType]);
-
-                    if (first > second) {
-                        return 1;
-                    }
+                    return sortOrder === "asc" ? first - second : second - first;
+                });
+            } else {
+                sortedObjects = [...objects].sort((a, b) => {
+                    const first = a[newSortType].toLowerCase();
+                    const second = b[newSortType].toLowerCase();
                     if (first < second) {
-                        return -1;
+                        return sortOrder === "asc" ? -1 : 1;
+                    }
+                    if (first > second) {
+                        return sortOrder === "asc" ? 1 : -1;
                     }
                     return 0;
-                }),
-            );
+                });
+            }
+            setSortType(newSortType);
+            setSortOrder("asc");
         }
+
+        setObjects(sortedObjects);
     };
 
     return (

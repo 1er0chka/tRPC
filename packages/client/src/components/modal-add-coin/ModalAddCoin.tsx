@@ -4,7 +4,7 @@ import {Coin} from "../../../../../types/coin";
 import {formatPrice, formatPriceString} from "../../formats/formats";
 import SecondaryButton from "../secondary-button/SecondaryButton";
 import PrimaryButton from "../primary-button/PrimaryButton";
-import {Portfolio, PortfolioCoin} from "../../types/coin";
+import usePortfolio from "../../hooks/usePortfolio";
 
 interface IModalAddCoinProps {
     isVisible: boolean;
@@ -17,6 +17,7 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
     ({isVisible, setVisible, coin, portfolioRefresh}) => {
         const [coinNumber, setCoinNumber] = useState<number>(0);
         const [isNumberCorrect, setIsNumberCorrect] = useState<boolean>(false);
+        const {addToPortfolio} = usePortfolio();
 
         const handleClose = (
             e: React.MouseEvent<HTMLDivElement> | React.MouseEvent<HTMLButtonElement>,
@@ -36,42 +37,12 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
         }, [coinNumber]);
 
 
-        // TODO тоже куда-то запихнуть
-        const addToPortfolio = () => {
-            const portfolio = localStorage.getItem("portfolio");
-            const newCoin: PortfolioCoin = {
-                id: coin.id,
-                name: coin.name,
-                symbol: coin.symbol,
-                number: coinNumber,
-                oldPrice: parseFloat(coin.priceUsd) * coinNumber,
-                newPrice: parseFloat(coin.priceUsd),
-                difference: 0
-            };
-            if (portfolio) {
-                const result: PortfolioCoin[] = JSON.parse(portfolio);
-                if (
-                    !result.some((coin) => {
-                        if (coin.id == newCoin.id) {
-                            coin.number += newCoin.number;
-                            coin.oldPrice += newCoin.oldPrice;
-                            coin.difference = coin.number * newCoin.newPrice - coin.oldPrice
-                            return true;
-                        }
-                        return false;
-                    })
-                ) {
-                    result.push(newCoin);
-                }
-                localStorage.setItem("portfolio", JSON.stringify(result));
-            } else {
-                const data: Portfolio[] = [newCoin];
-                localStorage.setItem("portfolio", JSON.stringify(data));
-            }
+        const handleAddToPortfolio = () => {
+            addToPortfolio(coin, coinNumber)
             portfolioRefresh()
-            setCoinNumber(0);
-            setVisible(false);
-        };
+            setCoinNumber(0)
+            setVisible(false)
+        }
 
         return isVisible ? (
             <div className={styles.modal} onClick={handleClose}>
@@ -83,16 +54,9 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
                                 {formatPriceString(coin.priceUsd)}
                             </div>
                         </div>
-                        <div
-                            className={isNumberCorrect ? styles.input : styles.incorrectInput}
-                        >
-                            <input
-                                type={"number"}
-                                placeholder={"number"}
-                                onChange={(event) =>
-                                    setCoinNumber(parseFloat(event.target.value))
-                                }
-                            />
+                        <div className={isNumberCorrect ? styles.input : styles.incorrectInput}>
+                            <input type={"number"} placeholder={"number"}
+                                   onChange={(event) => setCoinNumber(parseFloat(event.target.value))}/>
                         </div>
                     </div>
                     <div className={styles.amount}>
@@ -102,11 +66,7 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
                     </div>
                     <div className={styles.buttons}>
                         <SecondaryButton onClick={handleClose} disabled={false} text={"Cancel"}/>
-                        <PrimaryButton
-                            onClick={addToPortfolio}
-                            disabled={!isNumberCorrect}
-                            text={"Buy"}
-                        />
+                        <PrimaryButton onClick={handleAddToPortfolio} disabled={!isNumberCorrect} text={"Buy"}/>
                     </div>
                 </div>
             </div>

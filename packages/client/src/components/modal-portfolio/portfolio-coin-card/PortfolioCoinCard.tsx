@@ -21,7 +21,7 @@ const PortfolioCoinCard: FunctionComponent<IPortfolioCoinProps> = ({coin, onDele
                         </div>
                     </div>
                     <div className={styles.price}>
-                        <div>{formatPrice(coin.oldPrice)}</div>
+                        <div>{formatPrice(coin.newPrice * coin.number)}</div>
                         <div className={styles.difference}>
                             {formatPrice(coin.difference)}
                         </div>

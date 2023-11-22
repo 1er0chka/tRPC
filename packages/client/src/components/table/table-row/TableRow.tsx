@@ -3,6 +3,7 @@ import React, {FunctionComponent} from "react";
 import styles from "./TableRow.module.scss";
 import {Coin} from "../../../../../../types/coin";
 import {formatPriceString} from "../../../formats/formats";
+import {Link} from "react-router-dom";
 
 interface ITableRowProps {
     rowContent: Coin;
@@ -10,33 +11,36 @@ interface ITableRowProps {
 }
 
 const TableRow: FunctionComponent<ITableRowProps> = ({rowContent, setCoin}) => {
-    const handleClick = () => {
-        // TODO открытие страницы с хз каким путем
-    };
 
     return (
         <tr className={styles.tableRow}>
-            <td onClick={handleClick}>{rowContent.rank}</td>
-            <td onClick={handleClick}>
-                <div className={styles.nameRow}>
-                    <img alt={""} className={styles.nameRow_logo}
-                         src={"https://assets.coincap.io/assets/icons/" + rowContent.symbol.toLowerCase() + "@2x.png"}/>
-                    <div>{rowContent.name}</div>
-                    <div className={styles.nameRow_symbol}>{rowContent.symbol}</div>
-                </div>
+            <td>
+                <Link key={rowContent.id} to={`/${rowContent.id}`}>{rowContent.rank}</Link></td>
+            <td>
+                <Link key={rowContent.id} to={`/${rowContent.id}`}>
+                    <div className={styles.nameRow}>
+                        <img alt={""} className={styles.nameRow_logo}
+                             src={"https://assets.coincap.io/assets/icons/" + rowContent.symbol.toLowerCase() + "@2x.png"}/>
+                        <div>{rowContent.name}</div>
+                        <div className={styles.nameRow_symbol}>{rowContent.symbol}</div>
+                    </div>
+                </Link>
             </td>
-            <td onClick={handleClick}>
-                {formatPriceString(rowContent.priceUsd)}
+            <td>
+                <Link key={rowContent.id} to={`/${rowContent.id}`}>
+                    {formatPriceString(rowContent.priceUsd)}
+                </Link>
             </td>
-            <td onClick={handleClick} className={
-                parseFloat(rowContent.changePercent24Hr) < 0
-                    ? styles.negativeSum
-                    : styles.positiveSum
-            }>
-                {parseFloat(rowContent.changePercent24Hr).toFixed(2)}%
+            <td>
+                <Link key={rowContent.id} to={`/${rowContent.id}`}
+                      className={parseFloat(rowContent.changePercent24Hr) < 0 ? styles.negativeSum : styles.positiveSum}>
+                    {parseFloat(rowContent.changePercent24Hr).toFixed(2)}%
+                </Link>
             </td>
-            <td onClick={handleClick}>
-                {formatPriceString(rowContent.marketCapUsd)}
+            <td>
+                <Link key={rowContent.id} to={`/${rowContent.id}`}>
+                    {formatPriceString(rowContent.marketCapUsd)}
+                </Link>
             </td>
             <td onClick={() => {
                 setCoin(rowContent)

@@ -24,8 +24,10 @@ const Header: FunctionComponent<IHeaderProps> = ({coins, portfolioRefresh, portf
                 :
                 <div/>
             }
-            <UserPortfolio onClickAction={() => setModalVisible(true)} portfolioSum={portfolioSum} portfolioDif={portfolioDif}/>
-            <ModalPortfolio isVisible={isModalVisible} setVisible={setModalVisible} portfolioRefresh={portfolioRefresh}/>
+            <UserPortfolio onClickAction={() => setModalVisible(true)} portfolioSum={portfolioSum}
+                           portfolioDif={portfolioDif}/>
+            <ModalPortfolio isVisible={isModalVisible} setVisible={setModalVisible}
+                            portfolioRefresh={portfolioRefresh}/>
         </div>
     );
 };

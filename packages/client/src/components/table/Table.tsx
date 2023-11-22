@@ -38,7 +38,8 @@ const Table: FunctionComponent<ITableProps> = ({itemsNumber, objects, setObjects
                 </table>
             </div>
             <Pagination itemsNumber={itemsNumber} refreshTable={refreshTable}/>
-            <ModalAddCoin isVisible={isModalVisible} setVisible={setModalVisible} coin={coin} portfolioRefresh={portfolioRefresh}/>
+            <ModalAddCoin isVisible={isModalVisible} setVisible={setModalVisible} coin={coin}
+                          portfolioRefresh={portfolioRefresh}/>
         </div>
     );
 };

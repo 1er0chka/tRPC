@@ -17,6 +17,14 @@
   }
 }
 
+a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  color: #3b2715;
+}
+
 .tableRow td {
   text-align: right;
 
@@ -26,7 +34,11 @@
   }
 
   &:not(:first-child, :last-child) {
-    padding: 0.8vw 1vw 0.8vw 1vw;
+    padding: 0 1vw 0 1vw;
+
+    a {
+      padding: 0.8vw 0 0.8vw 0;
+    }
   }
 
   &:nth-child(2) {
@@ -38,6 +50,7 @@
       visibility: hidden;
     }
   }
+
 }
 
 .nameRow {
@@ -76,10 +89,12 @@
 
 .negativeSum {
   color: rgba(255, 0, 0, 1);
+  text-decoration: none;
 }
 
 .positiveSum {
   color: #00af00;
+  text-decoration: none;
 }
 
 .addButton {

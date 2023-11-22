@@ -1,0 +1,68 @@
+@import "client/src/styles/fonts";
+
+.info {
+  display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.infoLeft {
+  width: 54vw;
+
+  @media (max-width: 1440px) {
+    width: 72vw;
+  }
+  @media (max-width: 768px) {
+    width: 93vw;
+  }
+}
+
+.back {
+  @include text(500);
+  text-decoration: none;
+  margin-left: 1vw;
+}
+
+.infoRight {
+  width: 20vw;
+  margin-left: 5vw;
+  margin-top: 1.7vw;
+
+  @media (max-width: 768px) {
+    width: 50vw;
+  }
+}
+
+.coinPrice {
+  @include title(500);
+  margin-bottom: 2vw;
+}
+
+.error {
+  @include title(500);
+  margin-left: 1vw;
+  margin-bottom: 1vw;
+}
+
+.addButton {
+  @include text(500);
+  margin-top: 2vw;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 0.1vw solid rgba(59, 39, 21, 0.3);
+  border-radius: 0.1vw;
+  padding: 0.2vw 0.8vw 0.2vw 0.8vw;
+  width: 100%;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(59, 39, 21, 0.7);
+    cursor: auto;
+  }
+}
