@@ -1,19 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import styles from './CoinsTablePage.module.scss'
 import Header from "../../components/header/Header";
-import {Coin, Portfolio, PortfolioCoin} from "../../../../../types/coin";
 import client from "../../client/client";
 import Search from "../../components/search/Search";
 import Table from "../../components/table/Table";
 import Loading from "../../components/loading/Loading";
+import {defaultCoin, PortfolioCoin} from "../../types/coin";
+import {Coin} from "../../../../../types/coin";
 
 const CoinsTablePage = () => {
-    const [portfolioCoins, setPortfolioCoins] = useState<PortfolioCoin[]>([])
     const [popularCoins, setPopularCoins] = useState<Coin[]>([])
     const [coins, setCoins] = useState<Coin[]>([])
     const [coinsNumber, setCoinsNumber] = useState<number>(0)
     const [searchRequest, setSearchRequest] = useState<string>('')
     const [isDataLoad, setDataLoad] = useState<boolean>(false)
+    const [portfolioSum, setPortfolioSum] = useState<number>(0)
+    const [portfolioDif, setPortfolioDif] = useState<number>(0)
 
     const getPopularCoins = async () => {
         client.coins.getAll.mutate({offset: 0})
@@ -36,14 +38,12 @@ const CoinsTablePage = () => {
     }
 
     const getCoin = async (id: string) => {
-        client.coins.getById.mutate({id: id})
-            .then((data: Coin) => {
-                return data
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-    }
+        try {
+            return await client.coins.getById.mutate({id: id});
+        } catch (error) {
+            return defaultCoin;
+        }
+    };
 
     const getCoinsNumber = async () => {
         client.coins.getNumber.mutate()
@@ -55,21 +55,36 @@ const CoinsTablePage = () => {
             })
     }
 
-    const getPortfolioCoins = async (portfolios: Portfolio[]) => {
-        const coins: PortfolioCoin[] = []
-        for (const portfolio in portfolios) {
-            console.log(portfolio)
+    const refreshUserPortfolio = () => {
+        const portfolio = localStorage.getItem("portfolio");
+        setPortfolioSum(0)
+        setPortfolioDif(0)
+        if (portfolio) {
+            const portfolioCoins: PortfolioCoin[] = JSON.parse(portfolio);
+            for (const coin of portfolioCoins) {
+                setPortfolioSum(coin.newPrice * coin.number + portfolioSum)
+                setPortfolioDif(coin.difference + portfolioDif)
+            }
         }
     }
 
-    const getPortfolio = () => {
-        const data = localStorage.getItem("portfolio");
-        if (data) {
-            const object: Portfolio[] = JSON.parse(data);
-            getPortfolioCoins(object)
-        } else {
-            setPortfolioCoins([]);
+    const refreshPortfolio = () => {
+        const portfolio = localStorage.getItem("portfolio");
+        if (portfolio) {
+            const portfolioCoins: PortfolioCoin[] = JSON.parse(portfolio);
+            refreshPortfolioCoins(portfolioCoins)
         }
+    }
+    const refreshPortfolioCoins = async (portfolio: PortfolioCoin[]) => {
+        for (const coin of portfolio) {
+            const newCoin: Coin = await getCoin(coin.id)
+            if (newCoin && newCoin.id) {
+                coin.newPrice = parseFloat(newCoin.priceUsd)
+                coin.difference = coin.number * coin.newPrice - coin.oldPrice
+            }
+        }
+        console.log(portfolio)
+        localStorage.setItem("portfolio", JSON.stringify(portfolio));
     }
 
     useEffect(() => {
@@ -77,16 +92,9 @@ const CoinsTablePage = () => {
         getPopularCoins()
         getCoins(0)
         getCoinsNumber()
-        getPortfolio()
-
-        const portfolioJson = localStorage.getItem("portfolio");
-        if (portfolioJson) {
-            const portfolio: Portfolio[] = JSON.parse(portfolioJson);
-            // TODO портфолио
-            console.log(portfolio)
-        }
+        refreshPortfolio()
+        refreshUserPortfolio()
     }, [])
-
 
     const getSearchResult = async () => {
         if (searchRequest) {
@@ -108,10 +116,9 @@ const CoinsTablePage = () => {
         }
     }, [coins])
 
-
     return (
         <div className={styles.body}>
-            <Header portfolioCoins={portfolioCoins} coins={popularCoins}/>
+            <Header coins={popularCoins} portfolioRefresh={refreshUserPortfolio} portfolioDif={portfolioDif} portfolioSum={portfolioSum}/>
             <div className={styles.content}>
                 <div className={styles.aboveTableArea}>
                     <div className={styles.title}>Today`s Cryptocurrency Prices</div>
@@ -119,7 +126,8 @@ const CoinsTablePage = () => {
                 </div>
                 {
                     isDataLoad ?
-                        <Table refreshTable={getCoins} itemsNumber={coinsNumber} objects={coins} setObjects={setCoins}/>
+                        <Table refreshTable={getCoins} itemsNumber={coinsNumber} objects={coins} setObjects={setCoins}
+                               portfolioRefresh={refreshUserPortfolio}/>
                         :
                         <Loading/>
                 }

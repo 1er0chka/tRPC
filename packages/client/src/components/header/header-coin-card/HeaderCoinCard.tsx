@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import styles from './HeaderCoinCard.module.scss'
-import {Coin} from "../../../../../../types/coin";
 import {formatPriceString} from "../../../formats/formats";
+import {Coin} from "../../../../../../types/coin";
 
 interface IHeaderCoinCardProps {
     coin: Coin

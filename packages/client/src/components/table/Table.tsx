@@ -4,16 +4,18 @@ import TableHeader from "./table-header/TableHeader";
 import TableRow from "./table-row/TableRow";
 import Pagination from "./pagination/Pagination";
 import ModalAddCoin from "../modal-add-coin/ModalAddCoin";
-import {Coin, defaultCoin} from "../../types/coin";
+import {defaultCoin} from "../../types/coin";
+import {Coin} from "../../../../../types/coin";
 
 interface ITableProps {
     itemsNumber: number;
     objects: Coin[];
     setObjects: React.Dispatch<React.SetStateAction<Coin[]>>;
     refreshTable: (a: number) => Promise<void>;
+    portfolioRefresh: () => void
 }
 
-const Table: FunctionComponent<ITableProps> = ({itemsNumber, objects, setObjects, refreshTable}) => {
+const Table: FunctionComponent<ITableProps> = ({itemsNumber, objects, setObjects, refreshTable, portfolioRefresh}) => {
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
     const [coin, setCoin] = useState<Coin>(defaultCoin);
 
@@ -36,7 +38,7 @@ const Table: FunctionComponent<ITableProps> = ({itemsNumber, objects, setObjects
                 </table>
             </div>
             <Pagination itemsNumber={itemsNumber} refreshTable={refreshTable}/>
-            <ModalAddCoin isVisible={isModalVisible} setVisible={setModalVisible} coin={coin}/>
+            <ModalAddCoin isVisible={isModalVisible} setVisible={setModalVisible} coin={coin} portfolioRefresh={portfolioRefresh}/>
         </div>
     );
 };

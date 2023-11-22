@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import styles from "./TableHeader.module.scss";
-import {Coin, Sort} from "../../../../../../types/coin";
+import {Coin} from "../../../../../../types/coin";
+import {Sort} from "../../../types/coin";
 
 interface ITableHeaderProps {
     objects: Coin[];

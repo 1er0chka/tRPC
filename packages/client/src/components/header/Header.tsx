@@ -1,16 +1,18 @@
 import React, {FunctionComponent, useState} from 'react';
 import styles from './Header.module.scss'
-import {Coin, PortfolioCoin} from "../../../../../types/coin";
+import {Coin} from "../../../../../types/coin";
 import HeaderCoinCard from "./header-coin-card/HeaderCoinCard";
 import ModalPortfolio from "../modal-portfolio/ModalPortfolio";
 import UserPortfolio from "./portfolio/UserPortfolio";
 
 interface IHeaderProps {
     coins: Coin[]
-    portfolioCoins: PortfolioCoin[]
+    portfolioRefresh: () => void
+    portfolioSum: number
+    portfolioDif: number
 }
 
-const Header: FunctionComponent<IHeaderProps> = ({coins, portfolioCoins}) => {
+const Header: FunctionComponent<IHeaderProps> = ({coins, portfolioRefresh, portfolioSum, portfolioDif}) => {
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
 
     return (
@@ -22,8 +24,8 @@ const Header: FunctionComponent<IHeaderProps> = ({coins, portfolioCoins}) => {
                 :
                 <div/>
             }
-            <UserPortfolio onClickAction={() => setModalVisible(true)}/>
-            <ModalPortfolio isVisible={isModalVisible} setVisible={setModalVisible} portfolioCoins={portfolioCoins}/>
+            <UserPortfolio onClickAction={() => setModalVisible(true)} portfolioSum={portfolioSum} portfolioDif={portfolioDif}/>
+            <ModalPortfolio isVisible={isModalVisible} setVisible={setModalVisible} portfolioRefresh={portfolioRefresh}/>
         </div>
     );
 };

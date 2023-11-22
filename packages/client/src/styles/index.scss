@@ -16,5 +16,6 @@ body {
   }
   @media (max-width: 768px) {
     margin: 0 1vw 0 1vw;
+    user-select: none;
   }
 }

@@ -1,14 +1,4 @@
-export interface Coin {
-    id: string;
-    name: string;
-    rank: string;
-    symbol: string;
-    supply: string;
-    maxSupply: string;
-    priceUsd: string;
-    changePercent24Hr: string;
-    marketCapUsd: string;
-}
+import {Coin} from "../../../../types/coin";
 
 export const defaultCoin: Coin = {
     changePercent24Hr: "",
@@ -21,13 +11,6 @@ export const defaultCoin: Coin = {
     supply: "",
     symbol: "",
 };
-
-export interface History {
-    priceUsd: string;
-    time: string;
-    circulatingSupply: string;
-    date: string;
-}
 
 export interface Portfolio {
     id: string;
