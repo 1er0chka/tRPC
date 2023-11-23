@@ -2,8 +2,7 @@ import React, {FunctionComponent, useEffect, useState} from "react";
 import styles from "./ModalAddCoin.module.scss";
 import {Coin} from "../../../../../types/coin";
 import {formatPrice, formatPriceString} from "../../formats/formats";
-import SecondaryButton from "../secondary-button/SecondaryButton";
-import PrimaryButton from "../primary-button/PrimaryButton";
+import Button from "../button/Button";
 import usePortfolio from "../../hooks/usePortfolio";
 
 interface IModalAddCoinProps {
@@ -65,8 +64,8 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
                             : formatPrice(coinNumber * parseFloat(coin.priceUsd))}
                     </div>
                     <div className={styles.buttons}>
-                        <SecondaryButton onClick={handleClose} disabled={false} text={"Cancel"}/>
-                        <PrimaryButton onClick={handleAddToPortfolio} disabled={!isNumberCorrect} text={"Buy"}/>
+                        <Button onClick={handleClose} disabled={false} label={"Cancel"} mode={"secondary"}/>
+                        <Button onClick={handleAddToPortfolio} disabled={!isNumberCorrect} label={"Buy"} mode={"primary"}/>
                     </div>
                 </div>
             </div>

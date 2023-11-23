@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
 import styles from './ModalPortfolio.module.scss'
-import PrimaryButton from "../primary-button/PrimaryButton";
+import Button from "../button/Button";
 import PortfolioCoinCard from "./portfolio-coin-card/PortfolioCoinCard";
 import {PortfolioCoin} from "../../types/coin";
 
@@ -47,7 +47,7 @@ const ModalPortfolio: FunctionComponent<IModalPortfolioProps> = ({isVisible, set
                 {
                     portfolioCoins.map((coin) => <PortfolioCoinCard coin={coin} key={coin.id} onDelete={onDelete}/>)
                 }
-                <PrimaryButton onClick={() => setVisible(false)} disabled={false} text={"Close"}/>
+                <Button onClick={() => setVisible(false)} disabled={false} label={"Close"} mode={"primary"}/>
             </div>
         </div>
         : null

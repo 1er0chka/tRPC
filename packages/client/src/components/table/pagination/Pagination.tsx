@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import styles from "./Pagination.module.scss";
-import PrimaryButton from "../../primary-button/PrimaryButton";
+import Button from "../../button/Button";
 
 interface IPaginationProps {
     refreshTable: (a: number) => Promise<void>;
@@ -27,15 +27,15 @@ const Pagination: FunctionComponent<IPaginationProps> = ({
 
     return (
         <div className={styles.pagination}>
-            <PrimaryButton onClick={decreaseOffset} disabled={offset - 40 < 0} text={"<"}/>
+            <Button onClick={decreaseOffset} disabled={offset - 40 < 0} label={"<"} mode={"primary"}/>
             <div>
                 {offset} - {offset + 40 > itemsNumber ? itemsNumber : offset + 40}
             </div>
-            <PrimaryButton
+            <Button
                 onClick={increaseOffset}
                 disabled={offset + 40 > itemsNumber}
-                text={">"}
-            ></PrimaryButton>
+                label={">"} mode={"primary"}
+            ></Button>
         </div>
     );
 };

@@ -1,8 +1,8 @@
 import React, {FunctionComponent} from 'react';
 import styles from './PortfolioCoinCard.module.scss'
 import {formatPrice} from "../../../formats/formats";
-import SecondaryButton from "../../secondary-button/SecondaryButton";
 import {PortfolioCoin} from "../../../types/coin";
+import Button from "../../button/Button";
 
 interface IPortfolioCoinProps {
     coin: PortfolioCoin
@@ -28,7 +28,7 @@ const PortfolioCoinCard: FunctionComponent<IPortfolioCoinProps> = ({coin, onDele
                     </div>
                 </div>
                 <div className={styles.deleteButton}>
-                    <SecondaryButton onClick={() => onDelete(coin)} disabled={false} text={"X"}/>
+                    <Button onClick={() => onDelete(coin)} disabled={false} label={"X"} mode={"secondary"}/>
                 </div>
             </div>
         );
