@@ -15,10 +15,7 @@ async function main() {
 
     app.use(cors({
         origin: 'https://wondrous-donut-cfa916.netlify.app' // Домен вашего клиентского приложения
-    }));app.use((req, res, next) => {
-        console.log('Заголовки ответа:', res.getHeaders());
-        next();
-    });
+    }));
     app.use((req, _res, next) => {
         console.log('⬅️ ', req.method, req.path, req.body ?? req.query);
         next();
