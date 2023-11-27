@@ -15,7 +15,7 @@
     "zod": "^3.22.4"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npm install && tsc",
     "start": "node dist/packages/server/src/appRouter.js"
   },
   "devDependencies": {
