@@ -31,10 +31,10 @@ async function main() {
             createContext,
         }),
     );
-    /*
+
     app.listen(2021, () => {
         console.log('listening on port 2021');
-    });*/
+    });
 }
 
 void main();
