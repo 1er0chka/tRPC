@@ -14,7 +14,7 @@ async function main() {
     const app = express();
 
     app.use(cors({
-        origin: 'https://wondrous-donut-cfa916.netlify.app' // Домен вашего клиентского приложения
+        origin: 'https://wondrous-donut-cfa916.netlify.app'
     }));
     app.use((req, _res, next) => {
         console.log('⬅️ ', req.method, req.path, req.body ?? req.query);
@@ -31,9 +31,10 @@ async function main() {
             createContext,
         }),
     );
+    /*
     app.listen(2021, () => {
         console.log('listening on port 2021');
-    });
+    });*/
 }
 
 void main();
