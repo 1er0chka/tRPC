@@ -14,7 +14,7 @@ async function main() {
     const app = express();
 
     app.use(cors({
-        origin: '*',
+        origin: 'https://wondrous-donut-cfa916.netlify.app' // Домен вашего клиентского приложения
     }));
     app.use((req, _res, next) => {
         console.log('⬅️ ', req.method, req.path, req.body ?? req.query);
