@@ -3,6 +3,7 @@ import {ICoinResponse, ICoinsResponse} from "../types/responses";
 import {TRPCError} from "@trpc/server";
 import {trpc} from "../context/expressContext";
 import {Coin} from "../../../../types/coin";
+import axios, {AxiosResponse} from "axios";
 
 export const coinsRouter = trpc.router({
     getAll: trpc.procedure
@@ -10,11 +11,8 @@ export const coinsRouter = trpc.router({
         .mutation(async ({input}) => {
             console.log(input)
             try {
-                const response: Response = await fetch(
-                    "https://api.coincap.io/v2/assets?limit=40&offset=" + input.offset,
-                )
-                const responseJson: ICoinsResponse = await response.json() as ICoinsResponse
-                return responseJson.data.filter((coin: Coin) => {
+                const response: AxiosResponse<ICoinsResponse> = await axios.get("https://api.coincap.io/v2/assets?limit=40&offset=" + input.offset)
+                return response.data.data.filter((coin: Coin) => {
                     return coin.marketCapUsd && parseFloat(coin.priceUsd) >= 0.01
                 })
             } catch (e) {
@@ -30,12 +28,9 @@ export const coinsRouter = trpc.router({
         .input(schemas.coinId)
         .mutation(async ({input}) => {
             try {
-                const response: Response = await fetch(
-                    "https://api.coincap.io/v2/assets/" + input.id,
-                )
+                const response: AxiosResponse<ICoinResponse> = await axios.get("https://api.coincap.io/v2/assets/" + input.id)
                 if (response.status == 200) {
-                    const responseJson: ICoinResponse = await response.json() as ICoinResponse
-                    return responseJson.data
+                    return response.data.data
                 }
             } catch (e) {
                 console.error('INTERNAL_SERVER_ERROR. Error fetching data: ', e)
@@ -56,15 +51,14 @@ export const coinsRouter = trpc.router({
                 let coinsNumbers: number = 0
                 let lastRank: string = '0'
                 while (true) {
-                    const response: Response = await fetch(
+                    const response: AxiosResponse<ICoinsResponse> = await axios.get(
                         "https://api.coincap.io/v2/assets?limit=2000&offset=" + lastRank,
                     )
-                    const responseJson: ICoinsResponse = await response.json() as ICoinsResponse
-                    if (responseJson.data.length == 0) {
+                    if (response.data.data.length == 0) {
                         break
                     }
-                    lastRank = responseJson.data[responseJson.data.length - 1].rank
-                    coinsNumbers += responseJson.data.filter((coin: Coin) => {
+                    lastRank = response.data.data[response.data.data.length - 1].rank
+                    coinsNumbers += response.data.data.filter((coin: Coin) => {
                         return coin.marketCapUsd && parseFloat(coin.priceUsd) >= 0.01
                     }).length
                 }
@@ -82,11 +76,10 @@ export const coinsRouter = trpc.router({
         .input(schemas.coinId)
         .mutation(async ({input}) => {
             try {
-                const response: Response = await fetch(
+                const response: AxiosResponse<ICoinsResponse> = await axios.get(
                     "https://api.coincap.io/v2/assets?limit=2000&search=" + input.id,
                 )
-                const responseJson: ICoinsResponse = await response.json() as ICoinsResponse
-                return responseJson.data.filter((coin: Coin) => {
+                return response.data.data.filter((coin: Coin) => {
                     return coin.marketCapUsd && parseFloat(coin.priceUsd) >= 0.01
                 })
             } catch (e) {
