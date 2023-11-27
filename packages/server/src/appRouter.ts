@@ -13,7 +13,9 @@ const appRouter = trpc.router({
 async function main() {
     const app = express();
 
-    app.use(cors);
+    app.use(cors({
+        origin: '*',
+    }));
     app.use((req, _res, next) => {
         console.log('⬅️ ', req.method, req.path, req.body ?? req.query);
         next();
