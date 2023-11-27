@@ -4,7 +4,7 @@ import {AppRouter} from "server/src/appRouter";
 const client = createTRPCProxyClient<AppRouter>({
     links: [
         httpLink({
-            url: 'https://trpc-server-38lb.onrender.com'
+            url: 'https://trpc-server-38lb.onrender.com/coincap/'
         }),
     ],
 });
