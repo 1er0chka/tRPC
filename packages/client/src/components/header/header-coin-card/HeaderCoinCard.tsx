@@ -9,7 +9,7 @@ interface IHeaderCoinCardProps {
 
 const HeaderCoinCard: FunctionComponent<IHeaderCoinCardProps> = ({coin}) => {
     return (
-        <div className={styles.body}>
+        <div className={styles.body} data-testid="header-coin-card">
             <div className={styles.coinInfo}>
                 <img alt={""} className={styles.coinImage}
                      src={"https://assets.coincap.io/assets/icons/" + coin.symbol.toLowerCase() + "@2x.png"}/>
