@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cypress-image-snapshot": "^3.1.9",
+    "cypress-image-snapshot": "^4.0.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
@@ -25,6 +27,7 @@
     "@types/sass": "^1.45.0",
     "chartjs-plugin-crosshair": "^2.0.0",
     "chartjs-plugin-zoom": "^2.0.1",
+    "cypress": "^12.10.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
