@@ -12,7 +12,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { useContext } from "react";
-import {CoinInfoContext} from "../provider/CoinInfoContext";
+import {CoinInfoContext} from "../../provider/CoinInfoContext";
 
 ChartJs.register(
   LineElement,

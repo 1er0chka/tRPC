@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import styles from "./CoinChart.module.scss";
 import {CoinInfoContext} from "../../../provider/CoinInfoContext";
 import Button from "../../button/Button";
-import Chart from "../../../chart/Chart";
+import Chart from "../../chart/Chart";
 
 const CoinChart = () => {
     const {interval, setInterval} = useContext(CoinInfoContext);
