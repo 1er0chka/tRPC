@@ -28,7 +28,7 @@ const Table: FunctionComponent<ITableProps> = ({itemsNumber, objects, setObjects
     return (
         <div className={styles.body}>
             <div>
-                <table className={styles.table}>
+                <table className={styles.table} data-testid="coins-table">
                     <TableHeader objects={objects} setObjects={setObjects}/>
                     <tbody>
                     {objects.map((rowContent: Coin, rowId: number) => (
