@@ -2,7 +2,7 @@ describe('Data Load Test', () => {
     it('successfully loads and displays coins data', () => {
         cy.visit('https://wondrous-donut-cfa916.netlify.app/');
 
-        cy.get('[data-test-id="header-coin-card"]').each((card) => {
+        cy.get('[data-testid="header-coin-card"]').each((card) => {
             const text = card.text();
             console.log(text)
             expect(text).not.to.match(/NaN|undefined|^0$/);
