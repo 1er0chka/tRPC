@@ -9,13 +9,13 @@ interface ISearchProps {
 
 const Search: FunctionComponent<ISearchProps> = ({onClick, searchInfo, setSearchInfo}) => {
     return <div className={styles.input}>
-        <input
+        <input data-testid="search-input"
             type={"text"}
             placeholder={"Search..."}
             value={searchInfo}
             onChange={(event) => setSearchInfo(event.target.value)}
         />
-        <img className={styles.searchIcon} onClick={onClick} src={"/resources/images/search.png"} alt={""}/>
+        <img className={styles.searchIcon} data-testid="search-button" onClick={onClick} src={"/resources/images/search.png"} alt={""}/>
     </div>
 };
 
