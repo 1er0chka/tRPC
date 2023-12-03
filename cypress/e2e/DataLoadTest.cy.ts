@@ -9,11 +9,13 @@ const checkNumericContent = (text: string,  checkForZero = true) => {
     if (checkForZero) {
         expect(text).not.to.equal('$0')
         expect(text).not.to.equal('$0.00')
+        expect(text).not.to.equal('0')
+        expect(text).not.to.equal('0.00')
     }
 };
 
 const getText = (element: JQuery<HTMLElement>, testId: string) => {
-    return element.find(`[data-test-id="${testId}"]`).text().trim()
+    return element.find(`[data-testid="${testId}"]`).text().trim()
 }
 
 
@@ -27,11 +29,15 @@ describe('Data Load Test', () => {
             checkNumericContent(getText(card, 'coin-price'))
         });
 
-        // ѕровер€ем наличие данных в таблице
-        cy.get('table').find('tr').should('have.length.at.least', 1);
-        cy.get('table').find('td').each(($td) => {
-            const text = $td.text();
-            expect(text).not.to.match(/NaN|undefined|^0$/);
+        cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').should('have.length.at.least', 1);
+        cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').each((tr) => {
+            checkNumericContent(getText(tr, 'coin-id'))
+            // mb add image check
+            checkTextContent(getText(tr, 'coin-name'))
+            checkTextContent(getText(tr, 'coin-symbol'))
+            checkNumericContent(getText(tr, 'coin-price'))
+            checkNumericContent(getText(tr, 'coin-change'), false)
+            checkNumericContent(getText(tr, 'coin-market-cup'))
         });
 
         // ѕровер€ем, что нумераци€ страниц отображаетс€
