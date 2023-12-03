@@ -59,7 +59,7 @@ export const coinsRouter = trpc.router({
                     }
                     lastRank = response.data.data[response.data.data.length - 1].rank
                     coinsNumbers += response.data.data.filter((coin: Coin) => {
-                        return coin.marketCapUsd && parseFloat(coin.priceUsd) >= 0.01
+                        return coin.marketCapUsd && parseFloat(coin.marketCapUsd) >= 0.01 && parseFloat(coin.priceUsd) >= 0.01
                     }).length
                 }
                 return coinsNumbers
