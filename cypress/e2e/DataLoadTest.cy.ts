@@ -18,7 +18,6 @@ const getText = (element: JQuery<HTMLElement>, testId: string) => {
     return element.find(`[data-testid="${testId}"]`).text().trim()
 }
 
-
 describe('Data Load Test', () => {
     it('successfully loads and displays coins data', () => {
         cy.visit('https://wondrous-donut-cfa916.netlify.app/')
@@ -29,7 +28,7 @@ describe('Data Load Test', () => {
             checkNumericContent(getText(card, 'coin-price'))
         });
 
-        cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').should('have.length.at.least', 1);
+        cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').should('have.length.at.least', 1)
         cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').each((tr) => {
             checkNumericContent(getText(tr, 'coin-id'))
             // mb add image check
@@ -40,10 +39,14 @@ describe('Data Load Test', () => {
             checkNumericContent(getText(tr, 'coin-market-cup'))
         });
 
-        // Проверяем, что нумерация страниц отображается
-        cy.get('.pagination').should('contain.text', '1');
-
-        // Визуальная проверка главной страницы
-       // cy.matchImageSnapshot('homepage');
+        cy.get('[data-testid="coins-table-pagination"]').then((pagination) => {
+            const paginationText = pagination.text()
+            checkTextContent(paginationText)
+            const numbers = paginationText.split(' - ').map(text => parseInt(text, 10))
+            expect(numbers).to.have.length(2)
+            expect(numbers[0]).to.be.at.least(0)
+            expect(numbers[1]).to.be.at.least(0)
+            expect(numbers[0]).to.be.lessThan(numbers[1])
+        });
     });
 });
