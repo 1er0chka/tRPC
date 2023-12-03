@@ -13,10 +13,10 @@ const HeaderCoinCard: FunctionComponent<IHeaderCoinCardProps> = ({coin}) => {
             <div className={styles.coinInfo}>
                 <img alt={""} className={styles.coinImage}
                      src={"https://assets.coincap.io/assets/icons/" + coin.symbol.toLowerCase() + "@2x.png"}/>
-                <div className={styles.coinName}>{coin.name}</div>
-                <div className={styles.coinSymbol}>{coin.symbol}</div>
+                <div className={styles.coinName} data-testid="coin-name">{coin.name}</div>
+                <div className={styles.coinSymbol} data-testid="coin-symbol">{coin.symbol}</div>
             </div>
-            <div className={styles.coinPrice}>{formatPriceString(coin.priceUsd)}</div>
+            <div className={styles.coinPrice} data-testid="coin-price">{formatPriceString(coin.priceUsd)}</div>
         </div>
     );
 };
