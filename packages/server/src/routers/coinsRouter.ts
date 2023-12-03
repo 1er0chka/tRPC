@@ -13,7 +13,7 @@ export const coinsRouter = trpc.router({
             try {
                 const response: AxiosResponse<ICoinsResponse> = await axios.get("https://api.coincap.io/v2/assets?limit=40&offset=" + input.offset)
                 return response.data.data.filter((coin: Coin) => {
-                    return coin.marketCapUsd && parseFloat(coin.priceUsd) >= 0.01
+                    return coin.marketCapUsd && parseFloat(coin.marketCapUsd) >= 0.01 && parseFloat(coin.priceUsd) >= 0.01
                 })
             } catch (e) {
                 console.error('INTERNAL_SERVER_ERROR. Error fetching data: ', e)
@@ -80,7 +80,7 @@ export const coinsRouter = trpc.router({
                     "https://api.coincap.io/v2/assets?limit=2000&search=" + input.id,
                 )
                 return response.data.data.filter((coin: Coin) => {
-                    return coin.marketCapUsd && parseFloat(coin.priceUsd) >= 0.01
+                    return coin.marketCapUsd && parseFloat(coin.marketCapUsd) >= 0.01 && parseFloat(coin.priceUsd) >= 0.01
                 })
             } catch (e) {
                 console.error('INTERNAL_SERVER_ERROR. Error fetching data: ', e)
