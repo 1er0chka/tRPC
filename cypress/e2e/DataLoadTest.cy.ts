@@ -46,7 +46,7 @@ describe('Data Load Test', () => {
             expect(numbers).to.have.length(2)
             expect(numbers[0]).to.be.at.least(0)
             expect(numbers[1]).to.be.at.least(0)
-            expect(numbers[0]).to.be.at.least(numbers[1])
+            expect(numbers[0]).to.be.at.gte(numbers[1])
         });
     });
 });
