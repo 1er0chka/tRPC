@@ -14,7 +14,7 @@ const TableRow: FunctionComponent<ITableRowProps> = ({rowContent, setCoin}) => {
 
     return (
         <tr className={styles.tableRow} data-testid="coins-table-row">
-            <td data-testId="coin-id">
+            <td data-testId="coin-#">
                 <Link key={rowContent.id} to={`/${rowContent.id}`}>{rowContent.rank}</Link></td>
             <td>
                 <Link key={rowContent.id} to={`/${rowContent.id}`}>
@@ -26,18 +26,18 @@ const TableRow: FunctionComponent<ITableRowProps> = ({rowContent, setCoin}) => {
                     </div>
                 </Link>
             </td>
-            <td data-testId="coin-price">
+            <td data-testId="coin-Price">
                 <Link key={rowContent.id} to={`/${rowContent.id}`}>
                     {formatPriceString(rowContent.priceUsd)}
                 </Link>
             </td>
-            <td data-testId="coin-change">
+            <td data-testId="coin-24h%">
                 <Link key={rowContent.id} to={`/${rowContent.id}`}
                       className={parseFloat(rowContent.changePercent24Hr) < 0 ? styles.negativeSum : styles.positiveSum}>
                     {parseFloat(rowContent.changePercent24Hr).toFixed(2)}%
                 </Link>
             </td>
-            <td data-testId="coin-market-cup">
+            <td data-testId="coin-Market Cap">
                 <Link key={rowContent.id} to={`/${rowContent.id}`}>
                     {formatPriceString(rowContent.marketCapUsd)}
                 </Link>

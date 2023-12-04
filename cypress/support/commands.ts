@@ -3,7 +3,7 @@ const checkTextContent = (text: string) => {
     expect(text).not.to.match(/NaN|undefined/)
 };
 
-const checkNumericContent = (text: string,  checkForZero = true) => {
+const checkNumericContent = (text: string, checkForZero = true) => {
     expect(text).not.to.be.empty
     expect(text).not.to.match(/NaN|undefined/)
     if (checkForZero) {
@@ -29,12 +29,12 @@ Cypress.Commands.add('checkPopularCoins', () => {
 Cypress.Commands.add('checkCoinsTable', () => {
     cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').should('have.length.at.least', 1)
     cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').each((tr) => {
-        checkNumericContent(getText(tr, 'coin-id'))
+        checkNumericContent(getText(tr, 'coin-#'))
         checkTextContent(getText(tr, 'coin-name'))
         checkTextContent(getText(tr, 'coin-symbol'))
-        checkNumericContent(getText(tr, 'coin-price'))
-        checkNumericContent(getText(tr, 'coin-change'), false)
-        checkNumericContent(getText(tr, 'coin-market-cup'))
+        checkNumericContent(getText(tr, 'coin-Price'))
+        checkNumericContent(getText(tr, 'coin-24h%'), false)
+        checkNumericContent(getText(tr, 'coin-Market Cap'))
     });
 });
 
@@ -48,4 +48,22 @@ Cypress.Commands.add('checkPagination', () => {
         expect(numbers[1]).to.be.at.least(0)
         expect(numbers[0]).to.be.at.gte(numbers[1])
     });
+})
+
+Cypress.Commands.add('checkTableSorting', ({columnName, expectedOrder}) => {
+    cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').should('have.length.at.least', 1)
+
+    cy.get(`[data-testid="table-header-${columnName}"]`).click();
+    cy.get(`[data-testid="table-header-${columnName}"]`).invoke('text').should('eq', `${columnName} ${expectedOrder}`);
+
+    let prevData : number = 0
+
+    cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]')
+        .first().invoke('text').then((text) => {
+        prevData = parseFloat(text.replace(/[$,]/g, ''));
+    });
+
+    cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').each((tr) => {
+        getText(tr, `coin-${columnName}`)
+    }
 })
