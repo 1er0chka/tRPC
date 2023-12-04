@@ -52,12 +52,12 @@ const TableHeader: FunctionComponent<ITableHeaderProps> = ({
         <thead className={styles.tableHeader}>
         <tr>
             <th onClick={() => changeSort("rank")} data-testid="table-header-#">
-                # {sortType === "rank" ? (sortOrder === "asc" ? "▼" : "▲") : ""}
+                # {sortType === "rank" ? (sortOrder === "asc" ? "▲" : "▼") : ""}
             </th>
             <th>Name</th>
             <th onClick={() => changeSort("priceUsd")} data-testid="table-header-Price">
                 Price{" "}
-                {sortType === "priceUsd" ? (sortOrder === "asc" ? "▼" : "▲") : ""}
+                {sortType === "priceUsd" ? (sortOrder === "asc" ? "▲" : "▼") : ""}
             </th>
             <th onClick={() => changeSort("changePercent24Hr")} data-testid="table-header-24h%">
                 24h%{" "}
