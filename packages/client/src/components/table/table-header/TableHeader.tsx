@@ -51,15 +51,15 @@ const TableHeader: FunctionComponent<ITableHeaderProps> = ({
     return (
         <thead className={styles.tableHeader}>
         <tr>
-            <th onClick={() => changeSort("rank")}>
+            <th onClick={() => changeSort("rank")} data-testid="table-header-rank">
                 # {sortType === "rank" ? (sortOrder === "asc" ? "▼" : "▲") : ""}
             </th>
             <th>Name</th>
-            <th onClick={() => changeSort("priceUsd")}>
+            <th onClick={() => changeSort("priceUsd")} data-testid="table-header-price">
                 Price{" "}
                 {sortType === "priceUsd" ? (sortOrder === "asc" ? "▼" : "▲") : ""}
             </th>
-            <th onClick={() => changeSort("changePercent24Hr")}>
+            <th onClick={() => changeSort("changePercent24Hr")} data-testid="table-header-change">
                 24h%{" "}
                 {sortType === "changePercent24Hr"
                     ? sortOrder === "asc"
@@ -67,7 +67,7 @@ const TableHeader: FunctionComponent<ITableHeaderProps> = ({
                         : "▲"
                     : ""}
             </th>
-            <th onClick={() => changeSort("marketCapUsd")}>
+            <th onClick={() => changeSort("marketCapUsd")} data-testid="table-header-marketcap">
                 Market Cap{" "}
                 {sortType === "marketCapUsd" ? (sortOrder === "asc" ? "▼" : "▲") : ""}
             </th>
