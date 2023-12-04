@@ -56,14 +56,24 @@ Cypress.Commands.add('checkTableSorting', ({columnName, expectedOrder}) => {
     cy.get(`[data-testid="table-header-${columnName}"]`).click();
     cy.get(`[data-testid="table-header-${columnName}"]`).invoke('text').should('eq', `${columnName} ${expectedOrder}`);
 
-    let prevData : number = 0
-
+    let prevData: number = 0
     cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]')
-        .first().invoke('text').then((text) => {
-        prevData = parseFloat(text.replace(/[$,]/g, ''));
+        .first().then((row) => {
+        prevData = parseFloat(getText(row, `coin-${columnName}`).replace(/[$,]/g, ''))
     });
 
-    cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').each((tr) => {
-        getText(tr, `coin-${columnName}`)
+    if (expectedOrder === '▼') {
+        cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').each((tr) => {
+            const number: number = parseFloat(getText(tr, `coin-${columnName}`).replace(/[$,]/g, ''))
+            expect(prevData).to.be.at.gte(number)
+            prevData = number
+        })
+    } else {
+        cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').each((tr) => {
+            const number: number = parseFloat(getText(tr, `coin-${columnName}`).replace(/[$,]/g, ''))
+            expect(number).to.be.at.gte(prevData)
+            prevData = number
+        })
     }
+
 })
