@@ -41,7 +41,7 @@ const ModalPortfolio: FunctionComponent<IModalPortfolioProps> = ({isVisible, set
     }
 
     return isVisible ?
-        <div className={styles.root}>
+        <div className={styles.root} data-testid="portfolio-modal">
             <div className={styles.body}>
                 <div className={styles.title}>Portfolio</div>
                 {
