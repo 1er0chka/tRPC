@@ -11,7 +11,7 @@ interface IPortfolioCoinProps {
 
 const PortfolioCoinCard: FunctionComponent<IPortfolioCoinProps> = ({coin, onDelete}) => {
         return (
-            <div className={styles.body}>
+            <div className={styles.body} data-testid="modal-portfolio-coin">
                 <div className={styles.coin}>
                     <div className={styles.coinInfo}>
                         <img className={styles.coinLogo} alt={""}
