@@ -16,18 +16,18 @@ const PortfolioCoinCard: FunctionComponent<IPortfolioCoinProps> = ({coin, onDele
                     <div className={styles.coinInfo}>
                         <img className={styles.coinLogo} alt={""}
                              src={"https://assets.coincap.io/assets/icons/" + coin.symbol.toLowerCase() + "@2x.png"}/>
-                        <div className={styles.name}>
+                        <div data-testid="modal-portfolio-coin-name" className={styles.name}>
                             {coin.name} ({coin.number})
                         </div>
                     </div>
                     <div className={styles.price}>
-                        <div>{formatPrice(coin.newPrice * coin.number)}</div>
-                        <div className={styles.difference}>
+                        <div data-testid="modal-portfolio-coin-price">{formatPrice(coin.newPrice * coin.number)}</div>
+                        <div data-testid="modal-portfolio-coin-difference" className={styles.difference}>
                             {formatPrice(coin.difference)}
                         </div>
                     </div>
                 </div>
-                <div className={styles.deleteButton}>
+                <div data-testid="modal-portfolio-coin-delete-button" className={styles.deleteButton}>
                     <Button onClick={() => onDelete(coin)} disabled={false} label={"X"} mode={"secondary"}/>
                 </div>
             </div>
