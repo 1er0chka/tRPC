@@ -48,24 +48,24 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
                 <div className={styles.content}>
                     <div className={styles.number}>
                         <div className={styles.info}>
-                            <div className={styles.coinName}>{coin.name}</div>
-                            <div className={styles.coinPrice}>
+                            <div className={styles.coinName} data-testid="coin-name">{coin.name}</div>
+                            <div className={styles.coinPrice} data-testid="coin-price">
                                 {formatPriceString(coin.priceUsd)}
                             </div>
                         </div>
                         <div className={isNumberCorrect ? styles.input : styles.incorrectInput}>
-                            <input type={"number"} placeholder={"number"}
+                            <input data-testid="coin-number" type={"number"} placeholder={"number"}
                                    onChange={(event) => setCoinNumber(parseFloat(event.target.value))}/>
                         </div>
                     </div>
-                    <div className={styles.amount}>
+                    <div className={styles.amount} data-testid="amount">
                         {isNaN(coinNumber * parseFloat(coin.priceUsd))
                             ? "$0.00"
                             : formatPrice(coinNumber * parseFloat(coin.priceUsd))}
                     </div>
                     <div className={styles.buttons}>
-                        <Button onClick={handleClose} disabled={false} label={"Cancel"} mode={"secondary"}/>
-                        <Button onClick={handleAddToPortfolio} disabled={!isNumberCorrect} label={"Buy"} mode={"primary"}/>
+                        <Button data-testid="modal-add-coin-close-button" onClick={handleClose} disabled={false} label={"Cancel"} mode={"secondary"}/>
+                        <Button data-testid="modal-add-coin-buy-button" onClick={handleAddToPortfolio} disabled={!isNumberCorrect} label={"Buy"} mode={"primary"}/>
                     </div>
                 </div>
             </div>
