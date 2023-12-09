@@ -73,7 +73,7 @@ const CurrencyCoinPage = () => {
                                 :
                                 <div className={styles.content}>
                                     <div className={styles.error}>Page doesn`t exist</div>
-                                    <Link className={styles.back} data-testid="page-back-button" to={"/"}>
+                                    <Link className={styles.back} to={"/"}>
                                         {" "}
                                         ← Back to table
                                     </Link>
