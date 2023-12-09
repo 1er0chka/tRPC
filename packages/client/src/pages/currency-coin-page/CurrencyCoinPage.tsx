@@ -14,7 +14,7 @@ const CurrencyCoinPage = () => {
     const {currencyId} = useParams();
     const [popularCoins, setPopularCoins] = useState<Coin[]>([])
     const [isDataLoad, setDataLoad] = useState<boolean>(false)
-    const [isPageExist, setPageExist] = useState<boolean>(false);
+    const [isPageExist, setPageExist] = useState<boolean>(true);
     const {coin, setCoin, interval} = useContext(CoinInfoContext);
     const {getHistory} = useCoinHistory();
 
@@ -72,8 +72,8 @@ const CurrencyCoinPage = () => {
                                 <CoinInfo portfolioRefresh={refreshUserPortfolio}/>
                                 :
                                 <div className={styles.content}>
-                                    <div className={styles.error}>Page doesn`t exist</div>
-                                    <Link className={styles.back} to={"/"}>
+                                    <div className={styles.error} data-testid="page-message">Page doesn`t exist</div>
+                                    <Link className={styles.back} data-testid="page-back-button" to={"/"}>
                                         {" "}
                                         ← Back to table
                                     </Link>
