@@ -11,5 +11,6 @@ declare namespace Cypress {
         checkTableSorting(params: TableSortingParams): Chainable<void>
         checkPortfolioCoins(): Chainable<void>
         checkAddCoinModal(): Chainable<void>
+        checkCoinPageData(): Chainable<void>
     }
 }

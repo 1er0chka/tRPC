@@ -90,26 +90,42 @@ Cypress.Commands.add('checkPortfolioCoins', () => {
     cy.get('[data-testid="modal-portfolio-coin-delete-button"]').click()
 })
 
-Cypress.Commands.add('checkAddCoinModal', () => {
+const addCoin = (elem: JQuery<HTMLElement>) => {
     const coinNumber: number = 1
 
-    cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').first().then((elem) => {
-        cy.get('[data-testid="modal-add-coin"]').then((modal) => {
-            checkTextContent(getText(modal, "coin-name"))
-            expect(elem.find('[data-testid="coin-name"]').text()).to.equal(modal.find('[data-testid="coin-name"]').text());
-            checkNumericContent(getText(modal, "coin-price"))
-            expect(elem.find('[data-testid="coin-Price"]').text()).to.equal(modal.find('[data-testid="coin-price"]').text());
-            checkNumericContent(getText(modal, 'amount'), false)
-            cy.get('[data-testid="coin-number"]').type(coinNumber + '').then(() => {
-                const amount = (parseFloat(getText(modal, 'coin-price').replace(/[$,]/g, '')) * coinNumber).toFixed(2)
-                expect(parseFloat(getText(modal, 'amount').replace(/[$,]/g, '')).toFixed(2)).to.equal(amount)
-                cy.get('[data-testid="modal-add-coin-buy-button"]').click().then(() => {
-                    cy.get('[data-testid="portfolio"]').then((portfolio) => {
-                        expect(parseFloat(getText(portfolio, 'portfolio-sum').replace(/[$,]/g, ''))).to.equal(parseFloat(amount))
-                    })
+    cy.get('[data-testid="modal-add-coin"]').then((modal) => {
+        checkTextContent(getText(modal, "coin-name"))
+        checkNumericContent(getText(modal, "coin-price"))
+        expect(elem.find('[data-testid="coin-Price"]').text()).to.equal(modal.find('[data-testid="coin-price"]').text());
+        checkNumericContent(getText(modal, 'amount'), false)
+
+        cy.get('[data-testid="coin-number"]').type(coinNumber + '').then(() => {
+            const amount = (parseFloat(getText(modal, 'coin-price').replace(/[$,]/g, '')) * coinNumber).toFixed(2)
+            expect(parseFloat(getText(modal, 'amount').replace(/[$,]/g, '')).toFixed(2)).to.equal(amount)
+
+            cy.get('[data-testid="modal-add-coin-buy-button"]').click().then(() => {
+                cy.get('[data-testid="portfolio"]').then((portfolio) => {
+                    expect(parseFloat(getText(portfolio, 'portfolio-sum').replace(/[$,]/g, ''))).to.equal(parseFloat(amount))
                 })
             })
         })
+    })
+}
+
+Cypress.Commands.add('checkAddCoinModal', () => {
+    cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').first().then((elem) => {
+        addCoin(elem)
+    })
+})
+
+Cypress.Commands.add('checkCoinPageData', () => {
+    cy.get('[data-testid="coin"]').then((coin) => {
+        checkNumericContent(getText(coin, 'coin-rank'))
+        checkTextContent(getText(coin, 'coin-name'))
+        checkTextContent(getText(coin, 'coin-symbol'))
+
+        cy.get('[data-testid="coin-buy-button"]').click()
+        addCoin(coin)
     })
 })
 
