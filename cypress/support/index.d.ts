@@ -9,5 +9,7 @@ declare namespace Cypress {
         checkPopularCoins(): Chainable<void>
         checkPagination(): Chainable<void>
         checkTableSorting(params: TableSortingParams): Chainable<void>
+        checkPortfolioCoins(): Chainable<void>
+        checkAddCoinModal(): Chainable<void>
     }
 }

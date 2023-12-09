@@ -75,5 +75,39 @@ Cypress.Commands.add('checkTableSorting', ({columnName, expectedOrder}) => {
             prevData = number
         })
     }
-
 })
+
+Cypress.Commands.add('checkPortfolioCoins', () => {
+    const portfolio = localStorage.getItem("portfolio");
+    if (portfolio) {
+        cy.get('[data-testid="portfolio-modal"]').find('[data-testid="modal-portfolio-coin"]').each((coin) => {
+            checkTextContent(getText(coin, 'modal-portfolio-coin-name'));
+            checkNumericContent(getText(coin, 'modal-portfolio-coin-price'));
+            checkNumericContent(getText(coin, 'modal-portfolio-coin-difference'));
+        })
+    }
+
+    cy.get('[data-testid="modal-portfolio-coin-delete-button"]').click()
+})
+
+Cypress.Commands.add('checkAddCoinModal', () => {
+    const coinNumber: number = 4
+
+    cy.get('[data-testid="coins-table"]').find('[data-testid="coins-table-row"]').first().then((elem) => {
+        cy.get('[data-testid="modal-add-coin"]').then((modal) => {
+            checkTextContent(getText(modal, "coin-name"))
+            expect(elem.find('[data-testid="coin-name"]').text()).to.equal(modal.find('[data-testid="coin-name"]').text());
+            checkNumericContent(getText(modal, "coin-price"))
+            expect(elem.find('[data-testid="coin-Price"]').text()).to.equal(modal.find('[data-testid="coin-price"]').text());
+            checkNumericContent(getText(modal, 'amount'), false)
+            cy.get('[data-testid="coin-number"]').type(coinNumber + '').then(() => {
+                const amount = (parseFloat(getText(modal, 'coin-price').replace(/[$,]/g, '')) * coinNumber).toFixed(2)
+                expect(parseFloat(getText(modal, 'amount').replace(/[$,]/g, '')).toFixed(2)).to.equal(amount)
+                cy.get('[data-testid="modal-add-coin-buy-button"').click()
+            })
+        })
+    })
+})
+
+
+
