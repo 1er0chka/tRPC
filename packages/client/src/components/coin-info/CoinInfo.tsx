@@ -17,7 +17,7 @@ const CoinInfo:FunctionComponent<ICoinInfoProps> = ({portfolioRefresh}) => {
     const {coin} = useContext(CoinInfoContext);
 
     return (
-        <div>
+        <div data-testid="coin">
             <CoinElem/>
             <div className={styles.info}>
                 <div className={styles.infoLeft}>
@@ -25,7 +25,7 @@ const CoinInfo:FunctionComponent<ICoinInfoProps> = ({portfolioRefresh}) => {
                     <Link className={styles.back} to={"/"}>← Back to table </Link>
                 </div>
                 <div className={styles.infoRight}>
-                    <div className={styles.coinPrice}>
+                    <div className={styles.coinPrice} data-testid="coin-Price">
                         {formatPriceString(coin.priceUsd)}
                     </div>
                     <CoinData
@@ -40,7 +40,7 @@ const CoinInfo:FunctionComponent<ICoinInfoProps> = ({portfolioRefresh}) => {
                         primaryInfo={"Max Supply"}
                         secondaryInfo={formatPriceString(coin.maxSupply)}
                     />
-                    <button
+                    <button data-testid="coin-buy-button"
                         onClick={() => setModalVisible(true)}
                         className={styles.addButton}
                     >
