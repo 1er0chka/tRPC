@@ -64,8 +64,8 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
                             : formatPrice(coinNumber * parseFloat(coin.priceUsd))}
                     </div>
                     <div className={styles.buttons}>
-                        <Button data-testid="modal-add-coin-close-button" onClick={handleClose} disabled={false} label={"Cancel"} mode={"secondary"}/>
-                        <Button data-testid="modal-add-coin-buy-button" onClick={handleAddToPortfolio} disabled={!isNumberCorrect} label={"Buy"} mode={"primary"}/>
+                        <Button dataTestId="modal-add-coin-close-button" onClick={handleClose} label={"Cancel"} mode={"secondary"}/>
+                        <Button dataTestId="modal-add-coin-buy-button" onClick={handleAddToPortfolio} disabled={!isNumberCorrect} label={"Buy"} mode={"primary"}/>
                     </div>
                 </div>
             </div>

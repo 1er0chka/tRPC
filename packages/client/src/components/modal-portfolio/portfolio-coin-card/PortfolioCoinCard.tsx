@@ -28,7 +28,7 @@ const PortfolioCoinCard: FunctionComponent<IPortfolioCoinProps> = ({coin, onDele
                     </div>
                 </div>
                 <div data-testid="modal-portfolio-coin-delete-button" className={styles.deleteButton}>
-                    <Button onClick={() => onDelete(coin)} disabled={false} label={"X"} mode={"secondary"}/>
+                    <Button onClick={() => onDelete(coin)} label={"X"} mode={"secondary"}/>
                 </div>
             </div>
         );

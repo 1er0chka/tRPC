@@ -3,14 +3,16 @@ import styles from './Button.module.scss'
 
 interface IButtonProps {
     onClick: MouseEventHandler<HTMLButtonElement>;
-    disabled: boolean;
+    disabled?: boolean;
     label: string;
-    mode: string
+    mode: string;
+    dataTestId?: string
 }
 
-const Button: FunctionComponent<IButtonProps> = ({onClick, label, disabled = false, mode}) => {
+const Button: FunctionComponent<IButtonProps> = ({onClick, label, disabled = false, mode, dataTestId = 'button'}) => {
     return (
-        <button className={mode === "primary" ? styles.primaryButton : styles.secondaryButton} onClick={onClick} disabled={disabled}>
+        <button data-testid={dataTestId} className={mode === "primary" ? styles.primaryButton : styles.secondaryButton}
+                onClick={onClick} disabled={disabled}>
             {label}
         </button>
     );

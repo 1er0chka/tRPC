@@ -47,7 +47,7 @@ const ModalPortfolio: FunctionComponent<IModalPortfolioProps> = ({isVisible, set
                 {
                     portfolioCoins.map((coin) => <PortfolioCoinCard coin={coin} key={coin.id} onDelete={onDelete}/>)
                 }
-                <Button data-testid="modal-portfolio-close-button" onClick={() => setVisible(false)} disabled={false} label={"Close"} mode={"primary"}/>
+                <Button dataTestId="modal-portfolio-close-button" onClick={() => setVisible(false)} label={"Close"} mode={"primary"}/>
             </div>
         </div>
         : null

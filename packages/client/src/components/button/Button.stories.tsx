@@ -9,7 +9,6 @@ export default {
 export const Primary = () => <Button
     label="Click me!"
     onClick={()  => alert('Button clicked!')}
-    disabled={false}
     mode="primary"/>
 
 export const PrimaryDisabled = () => <Button
@@ -21,7 +20,6 @@ export const PrimaryDisabled = () => <Button
 export const Secondary = () => <Button
     label="Click me!"
     onClick={()  => alert('Button clicked!')}
-    disabled={false}
     mode="secondary"/>
 
 export const SecondaryDisabled = () => <Button
