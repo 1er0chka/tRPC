@@ -42,7 +42,7 @@ const TableRow: FunctionComponent<ITableRowProps> = ({rowContent, setCoin}) => {
                     {formatPriceString(rowContent.marketCapUsd)}
                 </Link>
             </td>
-            <td onClick={() => {
+            <td data-testid="coin-buy-button" onClick={() => {
                 setCoin(rowContent)
             }}>
                 <img className={styles.addButton} src={"/resources/images/add-cart.png"} alt={"Buy"}/>

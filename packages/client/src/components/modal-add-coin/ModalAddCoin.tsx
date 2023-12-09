@@ -44,7 +44,7 @@ const ModalAddCoin: FunctionComponent<IModalAddCoinProps> =
         }
 
         return isVisible ? (
-            <div className={styles.modal} onClick={handleClose}>
+            <div className={styles.modal} data-testid="modal-add-coin" onClick={handleClose}>
                 <div className={styles.content}>
                     <div className={styles.number}>
                         <div className={styles.info}>
