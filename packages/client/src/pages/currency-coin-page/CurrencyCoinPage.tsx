@@ -72,7 +72,7 @@ const CurrencyCoinPage = () => {
                                 <CoinInfo portfolioRefresh={refreshUserPortfolio}/>
                                 :
                                 <div className={styles.content}>
-                                    <div className={styles.error} data-testid="page-message">Page doesn`t exist</div>
+                                    <div className={styles.error}>Page doesn`t exist</div>
                                     <Link className={styles.back} data-testid="page-back-button" to={"/"}>
                                         {" "}
                                         ← Back to table
