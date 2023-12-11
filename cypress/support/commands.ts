@@ -110,6 +110,8 @@ const addCoin = (elem: JQuery<HTMLElement>) => {
             })
         })
     })
+
+
 }
 
 Cypress.Commands.add('checkAddCoinModal', () => {
