@@ -8,9 +8,11 @@ export const historyRouter = trpc.router({
         .input(schemas.coinHistory)
         .mutation(async ({input}) => {
             try {
+                console.log("https://api.coincap.io/v2/assets/" + input.id + "/history?interval=" + input.interval)
                 const response: Response = await fetch(
                     "https://api.coincap.io/v2/assets/" + input.id + "/history?interval=" + input.interval,
                 )
+                console.log(response)
                 if (response.status == 200) {
                     const responseJson: IHistoryResponse = await response.json() as IHistoryResponse
                     return responseJson.data
