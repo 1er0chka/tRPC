@@ -2,7 +2,7 @@ import * as schemas from "../schemas/schemas";
 import {IHistoryResponse} from "../types/responses";
 import {TRPCError} from "@trpc/server";
 import {trpc} from "../context/expressContext";
-import axios, {AxiosResponse} from "axios/index";
+import axios, {AxiosResponse} from "axios";
 
 export const historyRouter = trpc.router({
     getById: trpc.procedure
@@ -18,5 +18,9 @@ export const historyRouter = trpc.router({
                     message: 'Error fetching data'
                 });
             }
+            throw new TRPCError({
+                code: 'NOT_FOUND',
+                message: 'Data not found',
+            });
         })
 });
