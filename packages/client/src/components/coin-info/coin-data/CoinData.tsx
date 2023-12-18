@@ -11,7 +11,7 @@ const CoinData: FunctionComponent<ICoinDataProps> = ({
   secondaryInfo,
 }) => {
   return (
-    <div>
+    <div data-testid="coin-data">
       {secondaryInfo != "$NaN" && secondaryInfo != "&0.00" ? (
         <div className={styles.title}>
           <div className={styles.primaryInfo}>{primaryInfo}</div>

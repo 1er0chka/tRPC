@@ -8,7 +8,7 @@ interface ISearchProps {
 }
 
 const Search: FunctionComponent<ISearchProps> = ({onClick, searchInfo, setSearchInfo}) => {
-    return <div className={styles.input}>
+    return <div className={styles.input} data-testid="search">
         <input data-testid="search-input"
             type={"text"}
             placeholder={"Search..."}

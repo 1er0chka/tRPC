@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button tests Snapshot test 1`] = `
+exports[`Button Test Snapshot test 1`] = `
 <button
   class="primaryButton"
   data-testid="button"

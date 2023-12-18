@@ -16,10 +16,10 @@ const Header: FunctionComponent<IHeaderProps> = ({coins, portfolioRefresh, portf
     const [isModalVisible, setModalVisible] = useState<boolean>(false);
 
     return (
-        <div className={styles.body}>
+        <div className={styles.body} data-testid="header">
             {coins.length == 3 ?
                 <div className={styles.popularCoins}>
-                    {coins.map((coin) => <HeaderCoinCard coin={coin}/>)}
+                    {coins.map((coin) => <HeaderCoinCard key={coin.id} coin={coin}/>)}
                 </div>
                 :
                 <div/>

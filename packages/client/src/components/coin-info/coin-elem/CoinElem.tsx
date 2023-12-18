@@ -6,7 +6,7 @@ const CoinElem = () => {
     const {coin} = useContext(CoinInfoContext);
 
     return (
-        <div className={styles.title}>
+        <div className={styles.title} data-testid="coin-elem">
             <div className={styles.coinRank} data-testid="coin-rank">{coin.rank}.</div>
             <img className={styles.coinImage} alt={""}
                  src={"https://assets.coincap.io/assets/icons/" + coin.symbol.toLowerCase() + "@2x.png"}></img>

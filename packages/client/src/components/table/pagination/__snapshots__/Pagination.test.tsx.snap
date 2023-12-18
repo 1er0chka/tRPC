@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination Tests Snapshot test 1`] = `
+<div
+  class="pagination"
+  data-testid="pagination"
+>
+  <button
+    class="primaryButton"
+    data-testid="back-button"
+    disabled=""
+  >
+    &lt;
+  </button>
+  <div
+    data-testid="coins-table-pagination"
+  >
+    0
+     - 
+    40
+  </div>
+  <button
+    class="primaryButton"
+    data-testid="forward-button"
+  >
+    &gt;
+  </button>
+</div>
+`;

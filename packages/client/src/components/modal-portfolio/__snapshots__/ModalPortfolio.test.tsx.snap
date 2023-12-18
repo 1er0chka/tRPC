@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Portfolio Test Snapshot test 1`] = `
+<div
+  class="root"
+  data-testid="portfolio-modal"
+>
+  <div
+    class="body"
+  >
+    <div
+      class="title"
+    >
+      Portfolio
+    </div>
+    <button
+      class="primaryButton"
+      data-testid="modal-portfolio-close-button"
+    >
+      Close
+    </button>
+  </div>
+</div>
+`;

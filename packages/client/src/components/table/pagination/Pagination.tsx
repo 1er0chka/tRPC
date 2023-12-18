@@ -26,8 +26,8 @@ const Pagination: FunctionComponent<IPaginationProps> = ({
     }, [offset]);
 
     return (
-        <div className={styles.pagination}>
-            <Button onClick={decreaseOffset} disabled={offset - 40 < 0} label={"<"} mode={"primary"}/>
+        <div className={styles.pagination} data-testid="pagination">
+            <Button onClick={decreaseOffset} disabled={offset - 40 < 0} label={"<"} mode={"primary"} dataTestId={"back-button"}/>
             <div data-testid="coins-table-pagination">
                 {offset} - {offset + 40 > itemsNumber ? itemsNumber : offset + 40}
             </div>
@@ -35,6 +35,7 @@ const Pagination: FunctionComponent<IPaginationProps> = ({
                 onClick={increaseOffset}
                 disabled={offset + 40 > itemsNumber}
                 label={">"} mode={"primary"}
+                dataTestId={"forward-button"}
             ></Button>
         </div>
     );

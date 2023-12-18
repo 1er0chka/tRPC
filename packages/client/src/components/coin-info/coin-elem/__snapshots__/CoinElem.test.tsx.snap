@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Coin Elem Tests Snapshot test 1`] = `
+<div
+  class="title"
+  data-testid="coin-elem"
+>
+  <div
+    class="coinRank"
+    data-testid="coin-rank"
+  >
+    1
+    .
+  </div>
+  <img
+    alt=""
+    class="coinImage"
+    src="https://assets.coincap.io/assets/icons/btc@2x.png"
+  />
+  <div
+    class="coinName"
+    data-testid="coin-name"
+  >
+    Bitcoin
+  </div>
+  <div
+    class="coinSymbol"
+    data-testid="coin-symbol"
+  >
+    BTC
+  </div>
+</div>
+`;

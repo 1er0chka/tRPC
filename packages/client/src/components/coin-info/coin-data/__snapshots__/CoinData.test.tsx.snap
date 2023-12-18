@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Coin Data Tests Empty test 1`] = `
+<div
+  data-testid="coin-data"
+/>
+`;
+
+exports[`Coin Data Tests Snapshot test 1`] = `
+<div
+  data-testid="coin-data"
+>
+  <div
+    class="title"
+  >
+    <div
+      class="primaryInfo"
+    >
+      Primary info
+    </div>
+    <div
+      class="secondaryInfo"
+    >
+      Secondary info
+    </div>
+  </div>
+</div>
+`;

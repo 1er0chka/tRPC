@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Tests Snapshot test 1`] = `
+<div
+  class="input"
+  data-testid="search"
+>
+  <input
+    data-testid="search-input"
+    placeholder="Search..."
+    type="text"
+    value=""
+  />
+  <img
+    alt=""
+    class="searchIcon"
+    data-testid="search-button"
+    src="/resources/images/search.png"
+  />
+</div>
+`;
