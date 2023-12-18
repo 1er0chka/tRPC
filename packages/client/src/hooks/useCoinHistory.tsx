@@ -4,7 +4,6 @@ import client from '../client/client';
 
 const useCoinHistory = () => {
     const {coin, interval, setTime, setPrice} = useContext(CoinInfoContext);
-
     const getHistory = async () => {
         client.history.getById.mutate({id: coin.id, interval: interval})
             .then((data) => {

@@ -10,7 +10,7 @@ export const historyRouter = trpc.router({
         .mutation(async ({input}) => {
             try {
                 const response: AxiosResponse<IHistoryResponse> = await axios.get("https://api.coincap.io/v2/assets/" + input.id + "/history?interval=" + input.interval)
-                return response.data
+                return response.data.data
             } catch (e) {
                 console.error('INTERNAL_SERVER_ERROR. Error fetching data: ', e)
                 throw new TRPCError({
