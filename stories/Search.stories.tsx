@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import Search from "./Search";
+import * as React from 'react';
 import {action} from "@storybook/addon-actions";
+import Search from "client/src/components/search/Search";
 
 export default {
     title: "SearchField",
