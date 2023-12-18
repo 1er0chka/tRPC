@@ -1,5 +1,5 @@
 import * as schemas from "../schemas/schemas";
-import {ICoinsResponse, IHistoryResponse} from "../types/responses";
+import {IHistoryResponse} from "../types/responses";
 import {TRPCError} from "@trpc/server";
 import {trpc} from "../context/expressContext";
 import axios, {AxiosResponse} from "axios/index";
@@ -9,7 +9,6 @@ export const historyRouter = trpc.router({
         .input(schemas.coinHistory)
         .mutation(async ({input}) => {
             try {
-                console.log("https://api.coincap.io/v2/assets/" + input.id + "/history?interval=" + input.interval)
                 const response: AxiosResponse<IHistoryResponse> = await axios.get("https://api.coincap.io/v2/assets/" + input.id + "/history?interval=" + input.interval)
                 return response.data
             } catch (e) {
@@ -19,9 +18,5 @@ export const historyRouter = trpc.router({
                     message: 'Error fetching data'
                 });
             }
-            throw new TRPCError({
-                code: 'NOT_FOUND',
-                message: 'Data not found',
-            });
         })
 });
